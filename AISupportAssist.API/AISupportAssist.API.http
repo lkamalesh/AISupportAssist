@@ -1,0 +1,6 @@
+@AISupportAssist.API_HostAddress = http://localhost:5216
+
+GET {{AISupportAssist.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
