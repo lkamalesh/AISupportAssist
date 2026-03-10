@@ -39,7 +39,7 @@ namespace AISupportAssist.API.Services
         public async Task AddAsync(FaqDto faqDto)
         {
 
-            await _dbset.AddAsync(FaqMapping.MapToEntity(faqDto));
+            _dbset.Add(FaqMapping.MapToEntity(faqDto));
             await _context.SaveChangesAsync();
         }
 

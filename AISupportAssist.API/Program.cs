@@ -68,6 +68,17 @@ builder.Services.AddHttpClient<GroqService>(client =>
     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", builder.Configuration["GroqSettings:ApiKey"]);
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAISupportAssistClient",
+        policy =>
+        {
+            policy.WithOrigins("https://ai-support-assist-client.vercel.app")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddScoped<ISupportService,SupportService>();
 builder.Services.AddScoped<IFaqService,FaqService>();
 builder.Services.AddScoped<IGroqService,GroqService>();
@@ -85,6 +96,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAISupportAssistClient");
 app.UseAuthentication();
 app.UseAuthorization();
 

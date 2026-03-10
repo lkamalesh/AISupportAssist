@@ -9,6 +9,7 @@ namespace AISupportAssist.API.Mappings
         {
             return new Faq
             {
+                Id = faq.Id,
                 Question = faq.Question,
                 Answer = faq.Answer
             };
